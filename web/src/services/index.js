@@ -1,10 +1,10 @@
 import axios from "axios";
 import { cookie } from "react-cookies";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: "http://localhost:3333",
 });
-const getAuth = () => ({
+export const getAuth = () => ({
   headers: { Authorization: `Bearer ${cookie.load("token")}` },
 });
 export const ClientService = {

@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Form } from "@unform/web";
 import * as Yup from "yup";
+import { useCookies } from "react-cookie";
+import { useHistory } from "react-router-dom";
 import validate from "-/utils/validate";
 import Input from "-/components/Input";
 import InputMask from "-/components/InputMask";
@@ -51,11 +53,18 @@ const insuranceOptions = [
 
 const SignUp = () => {
   const formRef = React.useRef(null);
+  const [, setCookie] = useCookies();
+  const history = useHistory();
+
   const handleSubmit = async (data) => {
     const isValid = validate(schema, data, formRef);
     if (!isValid) return;
-    const response = await UserService.create(data);
-    console.log(response);
+    const { data: d } = await UserService.create(data);
+    const {
+      data: { token },
+    } = await UserService.login({ email: d.email, password: d.password });
+    setCookie("token", token);
+    history.push("/");
   };
   return (
     <Fragment>

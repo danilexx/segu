@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { Form } from "@unform/web";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import validate from "-/utils/validate";
 import Input from "-/components/Input";
 import { UserService } from "-/services";
@@ -26,12 +27,15 @@ const schema = Yup.object().shape({
 
 const SignIn = () => {
   const formRef = React.useRef(null);
+  const [, setCookie] = useCookies(["token"]);
+
   const handleSubmit = async (data) => {
     const isValid = validate(schema, data, formRef);
     if (!isValid) return;
     const {
       data: { token },
     } = await UserService.login(data);
+    setCookie("token", token);
   };
   return (
     <Fragment>

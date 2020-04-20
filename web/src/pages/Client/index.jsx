@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   RadarChart,
 } from "recharts";
-import { useToggle } from "react-use";
+import { useToggle, useList } from "react-use";
 import { ThemeContext } from "styled-components";
 import Column from "-/components/Column";
 import {
@@ -21,6 +21,8 @@ import {
 } from "./styles";
 import CorrectorCard, { CorrectorCards } from "-/components/CorrectorCard";
 import CorrectorModal from "./CorrectorModal";
+
+import { api } from "-/services";
 
 const data = [
   {
@@ -84,10 +86,25 @@ const Chart = () => {
 const Client = () => {
   const { id } = useParams();
   const [isOpen, toggle] = useToggle(false);
+  const [name, setName] = React.useState("");
+  const [corrector, setCorrector] = React.useState({});
+  const [correctors, { set }] = useList([]);
+  React.useEffect(() => {
+    (async () => {
+      const {
+        data: { name: newName },
+      } = await api.post(`/clients/${id}`, data);
+      const {
+        data: { items },
+      } = await api.get(`/correctors`, data);
+      set(items);
+      setName(newName);
+    })();
+  }, []);
   return (
     <Column>
       <ProfilezationImage />
-      <Title>Olá, Juliana! ♥</Title>
+      <Title>Olá, {name}! ♥</Title>
       <Explanation>
         Você tem o perfil ideal para começar a pensar em fazer um seguro de
         vida! Percebemos que você se importa muito com a família e as pessoas
@@ -104,11 +121,18 @@ const Client = () => {
         fazer um seguro.
       </LeftExplanation>
       <CorrectorCards>
-        <CorrectorCard handle={toggle} />
-        <CorrectorCard handle={toggle} />
-        <CorrectorCard handle={toggle} />
+        {correctors.map((e, index) => (
+          <CorrectorCard
+            key={index}
+            handle={() => {
+              setCorrector(e);
+              toggle(true);
+            }}
+            corrector={e}
+          />
+        ))}
       </CorrectorCards>
-      <CorrectorModal isOpen={isOpen} setter={toggle} />
+      <CorrectorModal corrector={corrector} isOpen={isOpen} setter={toggle} />
     </Column>
   );
 };

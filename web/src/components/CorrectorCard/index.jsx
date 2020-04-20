@@ -9,7 +9,7 @@ import {
 } from "./styles";
 
 export { CorrectorCards } from "./styles";
-const CorrectorCard = ({ handle }) => {
+const CorrectorCard = ({ handle, corrector }) => {
   const handleSomething = () => {
     if (handle) {
       handle();
@@ -19,7 +19,7 @@ const CorrectorCard = ({ handle }) => {
     <Container>
       <Photo />
       <Info>
-        <Name>Fabricio Oliveira</Name>
+        <Name>{corrector.name}</Name>
         <Enterprise>Corretora F&S</Enterprise>
         <KnowMoreButton onClick={handleSomething}>saber mais</KnowMoreButton>
       </Info>

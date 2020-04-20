@@ -26,7 +26,12 @@ const HBMenu = ({ isActive }) => {
 };
 const BigScreenMenu = () => {
   const isSmall = useMedia("(max-width: 700px)");
-  const [isOpened, toggle] = useToggle();
+  const [isOpened, toggle] = useToggle(false);
+  React.useEffect(() => {
+    if (isSmall && isOpened) {
+      toggle(false);
+    }
+  }, [isSmall, isOpened]);
   return (
     <Fragment>
       <StyledMenu inverted>

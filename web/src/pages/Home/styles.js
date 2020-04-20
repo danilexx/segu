@@ -44,6 +44,13 @@ export const LogoTitle = styled.p`
   margin-left: 48px;
 `;
 
+export const PrimaryText = styled.p`
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 20px;
+  font-weight: bolder;
+`;
+
 export const SecondaryText = styled.p`
   font-size: 2.2rem;
   text-align: center;

@@ -9,7 +9,10 @@ import {
   SeguLogo,
   LogoContainer,
   LogoTitle,
+  PrimaryText,
+  SecondaryText,
 } from "./styles";
+import ReactPlayer from "react-player";
 
 const BigScreenText = () => {
   return (
@@ -31,15 +34,13 @@ const BigScreenText = () => {
           size="large"
           floated="left"
         />
-        <Header as="h1" textAlign="center">
-          O que é o Segü?
-        </Header>
-        <p>
+        <PrimaryText>O que é o Segü?</PrimaryText>
+        <SecondaryText>
           É uma ferramenta online de conexão entre interessados em seguros e
           corretores. Com a proposta de revolucionar esse mercado, a Segü
           interage com o público de forma lúdica e divertida e apresenta o
           perfil ideal de seguros.
-        </p>
+        </SecondaryText>
       </StyledContainer>
       <StyledContainer>
         <Image
@@ -47,13 +48,11 @@ const BigScreenText = () => {
           size="large"
           floated="right"
         />
-        <Header as="h1" textAlign="center">
-          Quem pode usar?
-        </Header>
-        <p>
+        <PrimaryText>Quem pode usar?</PrimaryText>
+        <SecondaryText>
           Qualquer pessoa interessada em adquirir seguros, entender mais sobre
           seguros, pessoas que já tenham seguros e corretores!
-        </p>
+        </SecondaryText>
       </StyledContainer>
       <StyledContainer>
         <Image
@@ -61,21 +60,22 @@ const BigScreenText = () => {
           size="large"
           floated="left"
         />
-        <Header as="h1" textAlign="center">
-          Como funciona?
-        </Header>
-        <p>
+        <PrimaryText>Como funciona?</PrimaryText>
+        <SecondaryText>
           Para usar a Segü basta participar do Quiz de perguntas. No final, você
           receberá as indicações dos seguros ideais para o seu perfil. No caso
           do corretor, ele precisará fazer um cadastro na ferramenta para ter
           acesso às informações respondidas e assim oferecer o seguro mais
           adequado ao cliente.
-        </p>
+        </SecondaryText>
       </StyledContainer>
       <StyledContainer>
-        <Header as="h1" textAlign="center">
-          Apoio
-        </Header>
+        <StyledDiv>
+          <ReactPlayer url="https://youtu.be/zFCpVfXtD2E" />
+        </StyledDiv>
+      </StyledContainer>
+      <StyledContainer>
+        <PrimaryText>Apoio</PrimaryText>
         <StyledDiv>
           <Logos src={require("../../icons/Home/shawee.jpeg")} />
           <Logos src={require("../../icons/Home/grid.jpg")} />

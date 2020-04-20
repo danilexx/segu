@@ -1,8 +1,14 @@
 import React, { Fragment } from "react";
-import { StyledContainer, SecondaryText, Logos, StyledDiv } from "./styles";
+import {
+  StyledContainer,
+  SecondaryText,
+  Logos,
+  StyledDiv,
+  PrimaryText,
+} from "./styles";
 import { Image, Header } from "semantic-ui-react";
 import { Parallax, Background } from "react-parallax";
-import { ClientCard, ClientCards } from "../../components/ClientCard";
+import ReactPlayer from "react-player";
 
 const MobileText = () => {
   return (
@@ -22,9 +28,7 @@ const MobileText = () => {
           size="medium"
           centered
         />
-        <Header as="h1" textAlign="center">
-          O que é o segu?
-        </Header>
+        <PrimaryText>O que é o segu?</PrimaryText>
         <SecondaryText>
           É uma ferramenta online de conexão entre interessados em seguros e
           corretores. Com a proposta de revolucionar esse mercado, a Segü
@@ -38,9 +42,7 @@ const MobileText = () => {
           size="medium"
           centered
         />
-        <Header as="h1" textAlign="center">
-          Quem pode usar?
-        </Header>
+        <PrimaryText>Quem pode usar?</PrimaryText>
         <SecondaryText>
           Qualquer pessoa interessada em adquirir seguros, entender mais sobre
           seguros, pessoas que já tenham seguros e corretores!
@@ -52,9 +54,7 @@ const MobileText = () => {
           size="medium"
           centered
         />
-        <Header as="h1" textAlign="center">
-          Como funciona?
-        </Header>
+        <PrimaryText>Como funciona?</PrimaryText>
         <SecondaryText>
           Para usar a Segü basta participar do Quiz de perguntas. No final, você
           receberá as indicações dos seguros ideais para o seu perfil. No caso
@@ -64,9 +64,12 @@ const MobileText = () => {
         </SecondaryText>
       </StyledContainer>
       <StyledContainer>
-        <Header as="h1" textAlign="center">
-          Apoio
-        </Header>
+        <StyledDiv>
+          <ReactPlayer url="https://youtu.be/zFCpVfXtD2E" />
+        </StyledDiv>
+      </StyledContainer>
+      <StyledContainer>
+        <PrimaryText>Apoio</PrimaryText>
         <StyledDiv>
           <Logos src={require("../../icons/Home/shawee.jpeg")} />
           <Logos src={require("../../icons/Home/grid.jpg")} />
